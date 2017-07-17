@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -17,28 +18,20 @@ namespace PlatformMetEnemies
         public Vector2 velocity;
         public Rectangle rectangle;
 
-
         float rotation = 0f;
-
-        /*public bool isVisible = true;
-        Random random = new Random();
-        int randX;*/
 
         bool right, isDeath;
         float distance;
         float oldDistance;
 
-        public Enemy(Texture2D newTexture, Vector2 newPosition, float newDistance)
+        public Enemy(Vector2 newPosition, float newDistance, ContentManager Content)
         {
-            texture = newTexture;
             position = newPosition;
             distance = newDistance;
             origin = new Vector2(0,0);
             oldDistance = distance;
             isDeath = false;
-
-            /*randX = random.Next(1, 10);
-            velocity = new Vector2(randX, 4);*/
+            texture = Content.Load<Texture2D>("Enemy");
         }
 
         float playerDistance;
@@ -76,7 +69,7 @@ namespace PlatformMetEnemies
 
             if (rectangle.Intersects(player.rectangle))
                 Death();
-            if (rectangle.Intersects(player.rectangle)) ;
+  
 
         }
 

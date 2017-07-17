@@ -20,32 +20,24 @@ namespace PlatformMetEnemies
             protected set { rectangle = value; }
         }
 
-        private static ContentManager content;
-        public static ContentManager Content
+
+        public Tiles(int i, Rectangle newRectangle, ContentManager Content)
         {
-            protected get { return content; }
-            set { content = value; }
+            texture = Content.Load<Texture2D>("Tile" + i);
+            this.Rectangle = newRectangle;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D collisionBoxTexture)
+        public void Draw(SpriteBatch spriteBatch/*, Texture2D collisionBoxTexture*/)
         {
             spriteBatch.Draw(texture, rectangle, Color.White);
 
-            spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Left+8, rectangle.Top, rectangle.Width-16, 16), Color.White); // TouchTopOf
+            /*spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Left+8, rectangle.Top, rectangle.Width-16, 16), Color.White); // TouchTopOf
 
             spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Left+8, rectangle.Bottom-16, rectangle.Width-16, 16), Color.White); //Bottom
 
             spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Left, rectangle.Top + 16, 16, rectangle.Height - 32), Color.White); //Left
 
-            spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Right - 16, rectangle.Top + 16, 16, rectangle.Height - 32), Color.White); //Right
+            spriteBatch.Draw(collisionBoxTexture, new Rectangle(rectangle.Right - 16, rectangle.Top + 16, 16, rectangle.Height - 32), Color.White); //Right*/
         }
     }
-    class CollisionTiles : Tiles
-    {
-        public CollisionTiles(int i, Rectangle newRectangle)
-        {
-            texture = Content.Load<Texture2D>("Tile" + i);
-            this.Rectangle = newRectangle;
-        }
-    }
-}
+ }

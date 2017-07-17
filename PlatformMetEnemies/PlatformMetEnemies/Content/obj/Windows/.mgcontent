@@ -4,18 +4,19 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Enemy.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/MainMenu.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Button.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Player.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Tile2.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Tile1.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Health.png</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/Paused.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/btnQuit.jpg</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/WalkLeft.png</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/WalkRight.png</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/WalkUp.png</File>
-    <File>C:/Users/Arno/Desktop/PlatformMetEnemies/PlatformMetEnemies/Content/bullet.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Enemy.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/MainMenu.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Button.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Player.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Tile2.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Tile1.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Health.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Paused.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/btnQuit.jpg</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/WalkLeft.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/WalkRight.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/WalkUp.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Tile3.png</File>
+    <File>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/bullet.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -11,7 +11,7 @@ namespace PlatformMetEnemies
 {
     class Player
     {
-        List<Bullet> bulletListUpdate;
+        public List<Bullet> bulletListUpdate;
         double lastBulletShot;
         double timer;
         private float shootInterval = 0.33f;
@@ -39,7 +39,7 @@ namespace PlatformMetEnemies
             this.Content = Content;
 
             health = newHealth;
-            position = new Vector2(100, 50);
+            position = new Vector2(150, 50);
 
             rectangle = new Rectangle((int)position.X, (int)position.Y, 20, 36);
 
@@ -51,12 +51,11 @@ namespace PlatformMetEnemies
             walkRight.AddFrame(new Rectangle(0, 0, 20, 29), TimeSpan.FromSeconds(.08));
             walkRight.AddFrame(new Rectangle(20, 0, 20, 29), TimeSpan.FromSeconds(.08));
             walkRight.AddFrame(new Rectangle(40, 0, 20, 29), TimeSpan.FromSeconds(.08));
+            currentAnimation = walkLeft;
 
-            currentAnimation = walkRight;
-
-            //Bulets
             bulletListUpdate = new List<Bullet>();
 
+            walkLeftBl = true;
         }
 
         public void Load(ContentManager Content)
@@ -87,11 +86,18 @@ namespace PlatformMetEnemies
                 currentAnimation = walkRight;
 
             currentAnimation.Update(gameTime);
-
-            foreach (var bullets in bulletListUpdate)
+            if (bulletListUpdate.Count != 0)
             {
-                bullets.Update(gameTime);
+
+                for (int i = 0; i < bulletListUpdate.Count; i++)
+                {
+                    bulletListUpdate[i].Update(gameTime);
+                    if (bulletListUpdate[i].Iscollide)
+                        bulletListUpdate.Remove(bulletListUpdate[i]);
+                }
             }
+
+            
         }
 
         private void Input(GameTime gameTime)
@@ -157,6 +163,34 @@ namespace PlatformMetEnemies
             if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
         }
 
+        public void CollisionBullets(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+            if (rectangle.TouchTopOf(newRectangle))
+            {
+                rectangle.Y = newRectangle.Y - rectangle.Height;
+                velocity.Y = 0f;
+                hasJumped = false;
+            }
+
+            if (rectangle.TouchLeftOf(newRectangle))
+            {
+                position.X = newRectangle.X - rectangle.Width - 2;
+            }
+            if (rectangle.TouchRightOf(newRectangle))
+            {
+                position.X = newRectangle.X + newRectangle.Width + 2;
+            }
+            if (rectangle.TouchBottomOf(newRectangle))
+            {
+                velocity.Y = 1f;
+            }
+
+            if (position.X < 0) position.X = 0;
+            if (position.Y > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
+            if (position.Y < 0) velocity.Y = 1f;
+            if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             var sourceRectangle = currentAnimation.CurrentRectangle;
@@ -172,8 +206,6 @@ namespace PlatformMetEnemies
             {
                 bullets.Draw(spriteBatch);
             }
-
-
         }
 
         internal void Hit()

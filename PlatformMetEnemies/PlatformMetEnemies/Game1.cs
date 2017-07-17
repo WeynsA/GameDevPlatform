@@ -13,24 +13,24 @@ namespace PlatformMetEnemies
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D collisionBox;
 
-
-        Map map;
-        Player player;
+        Map activeLevel;
+        Level1 level1;
+        Level2 level2;
+        //Map map;
+        /*Player player;
         Texture2D healthTexture;
-        Rectangle healthRectangle;
+        Rectangle healthRectangle;*/
         Camera camera;
         Button btnPlay;
         Button btnQuit;
-        Enemy enemy;
-        Enemy enemy1;
+        /*Enemy enemy;
+        Enemy enemy1;*/
         bool paused = false;
         Texture2D pausedTexture;
         Rectangle pausedRectangle;
-        Button btnPausePlay;
-        Button btnPauseQuit;
-        Bullet bullet;
+
+        //Bullet bullet;
 
         enum GameState
         {
@@ -42,7 +42,7 @@ namespace PlatformMetEnemies
         GameState CurrentGameState = GameState.MainMenu;
 
         int screenWidth = 800, screenHeight = 600;
-        int canvasWidth, canvasHeight;
+
         
 
         public Game1()
@@ -59,8 +59,11 @@ namespace PlatformMetEnemies
         /// </summary>
         protected override void Initialize()
         {
-            map = new Map();
-            player = new Player(100, Content);
+            camera = new Camera(new Viewport(400, 400, screenWidth, screenHeight));
+            level1 = new Level1(Content, camera, graphics.GraphicsDevice);
+            level2 = new Level2(Content, camera, graphics.GraphicsDevice);
+            activeLevel = level1;
+            //player = new Player(100, Content);
             //player = new Player(Content.Load<Texture2D>("hero"), new Vector2(200, 70), 47, 44, 100);
             //player = new Player(100, 47,44, new Vector2(200,200));
             base.Initialize();
@@ -74,52 +77,18 @@ namespace PlatformMetEnemies
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-
-            collisionBox = new Texture2D(GraphicsDevice,1,1);
-            collisionBox.SetData(new Color[] { Color.Red });
-
-            Tiles.Content = Content;
 
             pausedTexture = Content.Load<Texture2D>("Paused");
-           
-            camera = new Camera(GraphicsDevice.Viewport);
 
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
 
-            healthTexture = Content.Load<Texture2D>("Health");
-            
             IsMouseVisible = true;
             btnPlay = new Button(Content.Load<Texture2D>("Button"), graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(350, 350));
             btnQuit = new Button(Content.Load<Texture2D>("BtnQuit"), graphics.GraphicsDevice);
             btnQuit.setPosition(new Vector2(350, 400));
-            
-            map.Generate(new int[,]{
-                { 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
-                { 0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2},
-                { 0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2},
-                { 0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,2,2,2,2,2,2,2},
-                { 0,2,2,1,1,1,0,0,0,0,1,1,1,2,2,2,2,2,2,2,1,0,0,0,0,0,2,2,2,2,2,2,2,2},
-                { 0,2,2,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,1,0,0,0,2,2,2,2,2,2,2,2},
-                { 0,2,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,2,2,2,2,2,2,2,2},
-                { 0,2,0,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-                { 0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-                { 0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-                { 0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-                }, 64);
-
-            player.Load(Content);
-            enemy = new Enemy(Content.Load<Texture2D>("Enemy"), new Vector2(300, 400), 100);
-            enemy1 = new Enemy(Content.Load<Texture2D>("Enemy"), new Vector2(650, 150), 100);
-
-            //player = new Player(Content.Load<Texture2D>("Hero"), new Vector2(200, 200), 44, 47, 100);
-
-
-            canvasWidth = GraphicsDevice.Viewport.Bounds.Width;
-            canvasHeight = GraphicsDevice.Viewport.Bounds.Height;
         }
 
         /// <summary>
@@ -163,30 +132,13 @@ namespace PlatformMetEnemies
                     btnPlay.isClicked = false;
                 }
                 Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
-
-                enemy.Update(player);
-                enemy1.Update(player);
-                //bullet.Update(gameTime);
-
-                player.Update(gameTime);
-                foreach (CollisionTiles tile in map.CollisionTiles)
-                {
-                    player.Collision(tile.Rectangle, map.Width, map.Height);
-                    enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                    enemy1.Collision(tile.Rectangle, map.Width, map.Height);
-                    camera.Update(player.Position, map.Width, map.Height);
-                }
-
-                if (enemy.rectangle.Intersects(player.rectangle)) player.Hit();
-                if (enemy1.rectangle.Intersects(player.rectangle))
-                {
-                    player.Hit();
-                }
-                //if (enemy.rectangle.Intersects(bullet.colrectangle)) enemy.Death();
+                activeLevel.Update(gameTime);
             }
 
             else if (paused)
             {
+                btnPlay.setPosition(new Vector2(screenWidth / 2-30, screenHeight / 2));
+                btnQuit.setPosition(new Vector2(screenWidth / 2-30, screenHeight / 2+37));
                 if (btnPlay.isClicked || Keyboard.GetState().IsKeyDown(Keys.Escape))
                     paused = false;
                 if (btnQuit.isClicked)
@@ -195,10 +147,6 @@ namespace PlatformMetEnemies
                 btnQuit.Update(mouse);
                 btnPlay.Update(mouse);
             }
-
-            healthRectangle = new Rectangle((int)camera.centre.X - (canvasWidth / 2) + 80, (int)camera.centre.Y - (canvasHeight / 2) + 80, player.health, 20);
-            pausedRectangle = new Rectangle((int)camera.centre.X - (canvasWidth / 2), (int)camera.centre.Y - (canvasHeight / 2), screenWidth, screenHeight);
-            
             base.Update(gameTime);
         }
 
@@ -222,17 +170,11 @@ namespace PlatformMetEnemies
                 case GameState.Quit:
                     break;
                 case GameState.Playing:
-
-                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-                    player.Draw(spriteBatch);
-                    enemy.Draw(spriteBatch);
-                    enemy1.Draw(spriteBatch);
-                    map.Draw(spriteBatch, collisionBox);
-                    spriteBatch.Draw(healthTexture, healthRectangle, Color.White);
-
+                    activeLevel.Draw(spriteBatch);
                     if (paused)
                     {
-                        spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
+                        spriteBatch.Begin();
+                        spriteBatch.Draw(pausedTexture, new Rectangle(0,0, screenWidth, screenHeight), Color.White);
                         btnPlay.Draw(spriteBatch);
                         btnQuit.Draw(spriteBatch);
                     }

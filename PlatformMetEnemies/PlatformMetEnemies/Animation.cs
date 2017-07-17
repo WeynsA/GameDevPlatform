@@ -46,9 +46,7 @@ namespace PlatformMetEnemies
             double secondsIntoAnimation =
                 timeIntoAnimation.TotalSeconds + gameTime.ElapsedGameTime.TotalSeconds;
 
-
             double remainder = secondsIntoAnimation % Duration.TotalSeconds;
-
             timeIntoAnimation = TimeSpan.FromSeconds(remainder);
         }
         public Rectangle CurrentRectangle

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Paused.jpg</SourceFile>
-  <SourceTime>2017-07-03T19:47:38+02:00</SourceTime>
-  <DestFile>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/bin/Windows/Paused.xnb</DestFile>
-  <DestTime>2017-08-28T15:55:34.3086209+02:00</DestTime>
+  <SourceFile>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/Finished.png</SourceFile>
+  <SourceTime>2017-08-28T15:54:54.1242494+02:00</SourceTime>
+  <DestFile>C:/Users/Weyns/Documents/Git's/GameDev/PlatformMetEnemies/PlatformMetEnemies/Content/bin/Windows/Finished.xnb</DestFile>
+  <DestTime>2017-08-28T15:55:34.4888028+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

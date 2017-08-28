@@ -16,7 +16,7 @@ namespace PlatformMetEnemies
         {
             enemyList.Add(new Enemy(new Vector2(850, 20), 150, Content));
             enemyList.Add(new Enemy(new Vector2(650, 120), 150, Content));
-            enemyList.Add(new Enemy(new Vector2(250, 350), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(0, 350), 150, Content));
             GenerateWorld();
             isFinished = false;
         }

@@ -58,7 +58,7 @@ namespace PlatformMetEnemies
             player.Update(gameTime);
             healthRectangle = new Rectangle((int)camera.centre.X - (canvasWidth / 2)+80, (int)camera.centre.Y - (canvasHeight/3)-120, player.health, 20);
 
-            if (enemyList.Count == 0)
+            if (enemyList.Count == 1)
             {
                 isFinished = true;
             }

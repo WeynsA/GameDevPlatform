@@ -15,9 +15,14 @@ namespace PlatformMetEnemies
         public Level1(ContentManager Content, Camera camera, GraphicsDevice graphicsDevice)
             :base(Content, camera, graphicsDevice)
         {
-            enemyList.Add(new Enemy(new Vector2(850, 20), 150, Content));
-            enemyList.Add(new Enemy(new Vector2(650, 120), 150, Content));
-            enemyList.Add(new Enemy(new Vector2(250, 350), 150, Content));
+            
+            enemyList.Add(new Enemy(new Vector2(250, 120), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(1000, 120), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(1350, 120), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(732, 120), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(510, 120), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(350, 350), 150, Content));
+            enemyList.Add(new Enemy(new Vector2(0, 20), 150, Content));
             GenerateWorld();
             isFinished = false;
  
@@ -36,7 +41,8 @@ namespace PlatformMetEnemies
                     isFinished = true;
                 }
 
-                enemyList[i].Update(player);
+                if (enemyList.Count > 0) enemyList[i].Update(player);
+
 
                 foreach (var tile in CollisionTiles)
                 {

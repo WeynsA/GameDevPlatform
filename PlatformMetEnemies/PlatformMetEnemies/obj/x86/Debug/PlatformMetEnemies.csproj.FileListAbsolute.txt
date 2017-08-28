@@ -71,3 +71,4 @@ C:\Users\Weyns\Documents\Git's\GameDev\PlatformMetEnemies\PlatformMetEnemies\bin
 C:\Users\Weyns\Documents\Git's\GameDev\PlatformMetEnemies\PlatformMetEnemies\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Weyns\Documents\Git's\GameDev\PlatformMetEnemies\PlatformMetEnemies\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Weyns\Documents\Git's\GameDev\PlatformMetEnemies\PlatformMetEnemies\obj\x86\Debug\PlatformMetEnemies.csprojResolveAssemblyReference.cache
+C:\Users\Weyns\Documents\Git's\GameDev\PlatformMetEnemies\PlatformMetEnemies\bin\Windows\x86\Debug\Content\Finished.xnb

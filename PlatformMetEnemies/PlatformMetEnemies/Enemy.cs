@@ -69,11 +69,8 @@ namespace PlatformMetEnemies
 
             if (rectangle.Intersects(player.rectangle))
             {
-                Death();
                 player.Hit();
             }
-  
-
         }
 
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)

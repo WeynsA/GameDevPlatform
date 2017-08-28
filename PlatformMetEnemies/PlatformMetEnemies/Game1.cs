@@ -27,7 +27,9 @@ namespace PlatformMetEnemies
         /*Enemy enemy;
         Enemy enemy1;*/
         bool paused = false;
+        bool finished = false;
         Texture2D pausedTexture;
+        Texture2D finishedTexture;
         //Rectangle pausedRectangle;
 
         //Bullet bullet;
@@ -79,6 +81,7 @@ namespace PlatformMetEnemies
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             pausedTexture = Content.Load<Texture2D>("Paused");
+            finishedTexture = Content.Load<Texture2D>("Finished");
 
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
@@ -107,10 +110,8 @@ namespace PlatformMetEnemies
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (activeLevel.isFinished)
-            {
-                activeLevel = level2;
-            }
+            if (activeLevel.isFinished) activeLevel = level2;
+
             MouseState mouse = Mouse.GetState();
             switch (CurrentGameState)
             {
@@ -170,7 +171,7 @@ namespace PlatformMetEnemies
                     btnPlay.Draw(spriteBatch);
                     btnQuit.Draw(spriteBatch);
                     spriteBatch.End();
-                    break; 
+                    break;
                 case GameState.Quit:
                     break;
                 case GameState.Playing:
@@ -178,9 +179,15 @@ namespace PlatformMetEnemies
                     if (paused)
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(pausedTexture, new Rectangle(0,0, screenWidth, screenHeight), Color.White);
+                        spriteBatch.Draw(pausedTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                         btnPlay.Draw(spriteBatch);
                         btnQuit.Draw(spriteBatch);
+                    }
+                    if (level2.isFinished)
+                    {
+                        spriteBatch.Begin();
+                        spriteBatch.Draw(finishedTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+
                     }
                     spriteBatch.End();
 

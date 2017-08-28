@@ -28,7 +28,7 @@ namespace PlatformMetEnemies
         Enemy enemy1;*/
         bool paused = false;
         Texture2D pausedTexture;
-        Rectangle pausedRectangle;
+        //Rectangle pausedRectangle;
 
         //Bullet bullet;
 
@@ -62,10 +62,10 @@ namespace PlatformMetEnemies
             camera = new Camera(new Viewport(400, 400, screenWidth, screenHeight));
             level1 = new Level1(Content, camera, graphics.GraphicsDevice);
             level2 = new Level2(Content, camera, graphics.GraphicsDevice);
+            
             activeLevel = level1;
-            //player = new Player(100, Content);
-            //player = new Player(Content.Load<Texture2D>("hero"), new Vector2(200, 70), 47, 44, 100);
-            //player = new Player(100, 47,44, new Vector2(200,200));
+            
+
             base.Initialize();
         }
 
@@ -107,6 +107,10 @@ namespace PlatformMetEnemies
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (activeLevel.isFinished)
+            {
+                activeLevel = level2;
+            }
             MouseState mouse = Mouse.GetState();
             switch (CurrentGameState)
             {

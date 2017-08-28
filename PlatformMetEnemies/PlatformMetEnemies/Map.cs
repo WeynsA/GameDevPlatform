@@ -24,6 +24,8 @@ namespace PlatformMetEnemies
         protected List<Tiles> collisionTiles = new List<Tiles>();
         private int width, height;
 
+        public bool isFinished { get; set; }
+
         public List<Tiles> CollisionTiles
         {
             get { return collisionTiles; }
@@ -56,6 +58,11 @@ namespace PlatformMetEnemies
             player.Update(gameTime);
             healthRectangle = new Rectangle((int)camera.centre.X - (canvasWidth / 2)+80, (int)camera.centre.Y - (canvasHeight/3)-120, player.health, 20);
 
+            if (enemyList.Count == 0)
+            {
+                isFinished = true;
+            }
+
             foreach (var tile in CollisionTiles)
             {
                 player.Collision(tile.Rectangle, Width, Height);
@@ -64,6 +71,7 @@ namespace PlatformMetEnemies
                 {
                     bullets.Collision(tile.Rectangle, Width, Height);
                 }
+                
             }
         }
         public virtual void Draw(SpriteBatch spriteBatch)

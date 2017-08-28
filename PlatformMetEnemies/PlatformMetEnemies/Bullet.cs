@@ -32,7 +32,7 @@ namespace PlatformMetEnemies
         }
          public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
-            if (rectangle.TouchTopOf(newRectangle))
+           if (rectangle.TouchTopOf(newRectangle))
             {
                 iscollide = true;
             }
@@ -42,6 +42,10 @@ namespace PlatformMetEnemies
                 iscollide = true;
             }
             if (rectangle.TouchRightOf(newRectangle))
+            {
+                iscollide = true;
+            }
+            if (rectangle.TouchBottomOf(newRectangle))
             {
                 iscollide = true;
             }
@@ -77,6 +81,8 @@ namespace PlatformMetEnemies
                 position.X += bulletSpeed;
                 rectangle.X = (int)position.X;
             }
+            if (iscollide) { }
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {

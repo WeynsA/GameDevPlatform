@@ -18,6 +18,7 @@ namespace PlatformMetEnemies
             enemyList.Add(new Enemy(new Vector2(650, 120), 150, Content));
             enemyList.Add(new Enemy(new Vector2(250, 350), 150, Content));
             GenerateWorld();
+            isFinished = false;
         }
 
         public override void Update(GameTime gameTime)

@@ -68,7 +68,10 @@ namespace PlatformMetEnemies
             }
 
             if (rectangle.Intersects(player.rectangle))
+            {
                 Death();
+                player.Hit();
+            }
   
 
         }
@@ -94,10 +97,10 @@ namespace PlatformMetEnemies
                 velocity.Y = 1f;
             }
 
-            if (position.X < 0) position.X = 0;
+            /*if (position.X < 0) position.X = 0;
             if (position.Y > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
             if (position.Y < 0) velocity.Y = 1f;
-            if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
+            if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;*/
         }
 
         public void Draw(SpriteBatch spriteBatch)
